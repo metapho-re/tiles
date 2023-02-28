@@ -87,11 +87,11 @@ const rotateContentElement =
     )}rad)`;
   };
 
-const mouseMouveEventListener = ({ clientX, clientY }) => {
+const mouseMoveEventListener = ({ clientX, clientY }) => {
   const tileElements = document.querySelectorAll('.tile');
 
   tileElements.forEach(rotateContentElement({ clientX, clientY }));
 };
 
 generateTileElements();
-document.addEventListener('mousemove', mouseMouveEventListener);
+document.addEventListener('mousemove', mouseMoveEventListener);
