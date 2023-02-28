@@ -72,11 +72,10 @@ const rotateContentElement =
       clientY,
     });
 
-    const horizontalOrigin = centerX - clientX > 0 ? 'right' : 'left';
-    const verticalOrigin = centerY - clientY > 0 ? 'bottom' : 'top';
-
-    const horizontalPositionToReset = centerX - clientX > 0 ? 'left' : 'right';
-    const verticalPositionToReset = centerY - clientY > 0 ? 'top' : 'bottom';
+    const [horizontalOrigin, horizontalPositionToReset] =
+      centerX - clientX > 0 ? ['right', 'left'] : ['left', 'right'];
+    const [verticalOrigin, verticalPositionToReset] =
+      centerY - clientY > 0 ? ['bottom', 'top'] : ['top', 'bottom'];
 
     contentElement.style[horizontalPositionToReset] = 'auto';
     contentElement.style[verticalPositionToReset] = 'auto';
