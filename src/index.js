@@ -11,7 +11,9 @@ const generateTileElement = (rootElement) => () => {
 const generateTileElements = () => {
   const rootElement = document.querySelector('#root');
 
-  Array(16 * 16).fill().forEach(generateTileElement(rootElement));
+  Array(16 * 16)
+    .fill()
+    .forEach(generateTileElement(rootElement));
 };
 
 const getTileElementCenterCoordinates = ({ top, left, bottom, right }) => ({
@@ -19,8 +21,20 @@ const getTileElementCenterCoordinates = ({ top, left, bottom, right }) => ({
   centerY: top + 0.5 * (bottom - top),
 });
 
-const getContentElementRotationTangent = ({ top, left, bottom, right, clientX, clientY }) => {
-  const { centerX, centerY } = getTileElementCenterCoordinates({ top, left, bottom, right });
+const getContentElementRotationTangent = ({
+  top,
+  left,
+  bottom,
+  right,
+  clientX,
+  clientY,
+}) => {
+  const { centerX, centerY } = getTileElementCenterCoordinates({
+    top,
+    left,
+    bottom,
+    right,
+  });
 
   if (centerX > clientX && centerY > clientY) {
     return (bottom - clientY) / (right - clientX);
@@ -37,26 +51,42 @@ const getContentElementRotationTangent = ({ top, left, bottom, right, clientX, c
   return (clientY - top) / (clientX - left);
 };
 
-const rotateContentElement = ({ clientX, clientY }) => (tileElement) => {
-  const contentElement = tileElement.querySelector('div');
+const rotateContentElement =
+  ({ clientX, clientY }) =>
+  (tileElement) => {
+    const contentElement = tileElement.querySelector('div');
 
-  const { top, left, bottom, right } = tileElement.getBoundingClientRect();
-  const { centerX, centerY } = getTileElementCenterCoordinates({ top, left, bottom, right });
-  const contentElementRotationTangent = getContentElementRotationTangent({ top, left, bottom, right, clientX, clientY });
+    const { top, left, bottom, right } = tileElement.getBoundingClientRect();
+    const { centerX, centerY } = getTileElementCenterCoordinates({
+      top,
+      left,
+      bottom,
+      right,
+    });
+    const contentElementRotationTangent = getContentElementRotationTangent({
+      top,
+      left,
+      bottom,
+      right,
+      clientX,
+      clientY,
+    });
 
-  const horizontalOrigin = centerX - clientX > 0 ? 'right' : 'left';
-  const verticalOrigin = centerY - clientY > 0 ? 'bottom' : 'top';
+    const horizontalOrigin = centerX - clientX > 0 ? 'right' : 'left';
+    const verticalOrigin = centerY - clientY > 0 ? 'bottom' : 'top';
 
-  const horizontalPositionToReset = centerX - clientX > 0 ? 'left' : 'right';
-  const verticalPositionToReset = centerY - clientY > 0 ? 'top' : 'bottom';
+    const horizontalPositionToReset = centerX - clientX > 0 ? 'left' : 'right';
+    const verticalPositionToReset = centerY - clientY > 0 ? 'top' : 'bottom';
 
-  contentElement.style[horizontalPositionToReset] = 'auto';
-  contentElement.style[verticalPositionToReset] = 'auto';
-  contentElement.style[horizontalOrigin] = 0;
-  contentElement.style[verticalOrigin] = 0;
-  contentElement.style.transformOrigin = `${verticalOrigin} ${horizontalOrigin}`;
-  contentElement.style.transform = `rotate(${Math.atan(contentElementRotationTangent)}rad)`;
-};
+    contentElement.style[horizontalPositionToReset] = 'auto';
+    contentElement.style[verticalPositionToReset] = 'auto';
+    contentElement.style[horizontalOrigin] = 0;
+    contentElement.style[verticalOrigin] = 0;
+    contentElement.style.transformOrigin = `${verticalOrigin} ${horizontalOrigin}`;
+    contentElement.style.transform = `rotate(${Math.atan(
+      contentElementRotationTangent
+    )}rad)`;
+  };
 
 const mouseMouveEventListener = ({ clientX, clientY }) => {
   const tileElements = document.querySelectorAll('.tile');
