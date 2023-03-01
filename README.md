@@ -1,12 +1,14 @@
 # Tiles
 
-Tile-based visual effect based on cursor position.
+Tile-based visual effects using cursor position.
 
-![Tile Demo](./assets/tiles.gif)
+![Tiles 01 Demo](./assets/tiles-01.gif)
+
+![Tiles 02 Demo](./assets/tiles-02.gif)
 
 ## Author
 
-* **Pierre-Alain Castella** - *Initial work* - [metapho-re](https://github.com/metapho-re)
+- **Pierre-Alain Castella** - _Initial work_ - [metapho-re](https://github.com/metapho-re)
 
 ## License
 

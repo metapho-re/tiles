@@ -1,0 +1,32 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  cursor: crosshair;
+}
+
+#root {
+  width: 88vh;
+  height: 88vh;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+}
+
+.tile {
+  width: 6.25%;
+  height: 6.25%;
+  position: relative;
+  overflow: hidden;
+}
+
+.tile div {
+  width: 150%;
+  height: 150%;
+  position: absolute;
+  background-color: black;
+}
